@@ -29,6 +29,7 @@
 #include "sdf/Imu.hh"
 #include "sdf/Magnetometer.hh"
 #include "sdf/Lidar.hh"
+#include "sdf/Uwb.hh"
 #include "sdf/parser.hh"
 #include "sdf/Sensor.hh"
 #include "sdf/Types.hh"
@@ -68,7 +69,8 @@ const std::vector<std::string> sensorTypeStrs =
   "boundingbox_camera",
   "custom",
   "wide_angle_camera",
-  "air_speed"
+  "air_speed",
+  "uwb"
 };
 
 class sdf::Sensor::Implementation
@@ -126,6 +128,9 @@ class sdf::Sensor::Implementation
 
   /// \brief Optional lidar.
   public: std::optional<Lidar> lidar;
+
+    /// \brief Optional UWB.
+  public: std::optional<Uwb> uwb;
 
   // Developer note: If you add a new sensor type, make sure to also
   // update the Sensor::operator== function. Please bump this text down as
@@ -187,6 +192,8 @@ bool Sensor::operator==(const Sensor &_sensor) const
       return *(this->dataPtr->camera) == *(_sensor.dataPtr->camera);
     case SensorType::LIDAR:
       return *(this->dataPtr->lidar) == *(_sensor.dataPtr->lidar);
+    case SensorType::UWB:
+      return *(this->dataPtr->uwb) == *(_sensor.dataPtr->uwb);
     case SensorType::NONE:
     default:
       return true;
@@ -404,6 +411,13 @@ Errors Sensor::Load(ElementPtr _sdf)
   else if (type == "wireless_transmitter")
   {
     this->dataPtr->type = SensorType::WIRELESS_TRANSMITTER;
+  }
+  else if (type == "uwb")
+  {
+    this->dataPtr->type = SensorType::UWB;
+    this->dataPtr->uwb.emplace();
+    Errors err = this->dataPtr->uwb->Load(_sdf->GetElement("uwb"));
+    errors.insert(errors.end(), err.begin(), err.end());
   }
   else
   {
@@ -723,6 +737,24 @@ Imu *Sensor::ImuSensor()
 }
 
 /////////////////////////////////////////////////
+void Sensor::SetUwbSensor(const Uwb &_uwb)
+{
+  this->dataPtr->uwb = _uwb;
+}
+
+/////////////////////////////////////////////////
+const Uwb *Sensor::UwbSensor() const
+{
+  return optionalToPointer(this->dataPtr->uwb);
+}
+
+/////////////////////////////////////////////////
+Uwb *Sensor::UwbSensor()
+{
+  return optionalToPointer(this->dataPtr->uwb);
+}
+
+/////////////////////////////////////////////////
 sdf::ElementPtr Sensor::ToElement() const
 {
   sdf::Errors errors;
@@ -799,6 +831,12 @@ sdf::ElementPtr Sensor::ToElement(sdf::Errors &_errors) const
     sdf::ElementPtr rayElem = (elem->HasElement("ray")) ?
         elem->GetElement("ray") : elem->GetElement("lidar");
     rayElem->Copy(this->dataPtr->lidar->ToElement());
+  }
+  // uwb
+  else if (this->Type() == sdf::SensorType::UWB && this->dataPtr->uwb)
+  {
+    sdf::ElementPtr uwbElem = elem->GetElement("uwb");
+    uwbElem->Copy(this->dataPtr->uwb->ToElement());
   }
   // magnetometer
   else if (this->Type() == sdf::SensorType::MAGNETOMETER &&

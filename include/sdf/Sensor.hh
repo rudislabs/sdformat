@@ -44,6 +44,7 @@ namespace sdf
   class Lidar;
   class Magnetometer;
   class NavSat;
+  class Uwb;
   struct PoseRelativeToGraph;
   template <typename T> class ScopedGraph;
 
@@ -134,6 +135,9 @@ namespace sdf
 
     /// \brief An air speed sensor.
     AIR_SPEED = 26,
+    
+    /// \brief An UWB sensor.
+    UWB = 27,
   };
 
   /// \brief Information about an SDF sensor.
@@ -430,6 +434,24 @@ namespace sdf
     /// \brief Set the lidar sensor.
     /// \param[in] _lidar The lidar sensor.
     public: void SetLidarSensor(const Lidar &_lidar);
+
+    /// \brief Set the UWB sensor.
+    /// \param[in] _uwb The UWB sensor.
+    public: void SetUwbSensor(const Uwb &_uwb);
+
+    /// \brief Get a pointer to an UWB sensor, or nullptr if the sensor
+    /// does not contain an UWB sensor.
+    /// \return Pointer to the sensor's UWB, or nullptr if the sensor
+    /// is not an UWB.
+    /// \sa SensorType Type() const
+    public: const Uwb *UwbSensor() const;
+
+    /// \brief Get a mutable UWB sensor, or nullptr if the sensor
+    /// does not contain an UWB sensor.
+    /// \return Pointer to the sensor's UWB, or nullptr if the sensor
+    /// is not an UWB.
+    /// \sa SensorType Type() const
+    public: Uwb *UwbSensor();
 
     /// \brief Get the plugins attached to this object.
     /// \return A vector of Plugin, which will be empty if there are no

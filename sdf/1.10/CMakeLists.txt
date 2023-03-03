@@ -59,6 +59,7 @@ set (sdfs
   state.sdf
   surface.sdf
   transceiver.sdf
+  uwb.sdf
   visual.sdf
   world.sdf
 )

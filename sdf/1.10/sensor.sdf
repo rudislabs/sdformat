@@ -33,6 +33,7 @@
                   segmentation_camera, segmentation,
                   sonar,
                   thermal_camera, thermal,
+                  uwb,
                   wireless_receiver, and
                   wireless_transmitter.
       The "ray", "gpu_ray", and "gps" types are equivalent to "lidar", "gpu_lidar", and "navsat", respectively. It is preferred to use "lidar", "gpu_lidar", and "navsat" since "ray", "gpu_ray", and "gps" will be deprecated. The "ray", "gpu_ray", and "gps" types are maintained for legacy support.
@@ -78,5 +79,6 @@
   <include filename="rfidtag.sdf" required="0"/>
   <include filename="sonar.sdf" required="0"/>
   <include filename="transceiver.sdf" required="0"/>
+  <include filename="uwb.sdf" required="0"/>
 
 </element> <!-- End Sensor -->
