@@ -1,0 +1,16 @@
+<element name="uwb" required="0">
+  <description>These elements are specific to an uwb sensor. This sensor produces angle measurements based on the locations of 2 objects</description>
+
+   <element name="orientation_reference_frame" required="0">
+       <element name="localization" type="string" default="NED" required="0">
+              <description>
+              - NED: The UWB sensor's XYZ aligns with NED, where NED orientation relative to Gazebo world
+                     is defined by the SphericalCoordinates class.
+              - ENU: The UWB sensor's XYZ aligns with ENU, where ENU orientation relative to Gazebo world
+                     is defined by the SphericalCoordinates class.
+              - NWU: The UWB sensor's XYZ aligns with NWU, where NWU orientation relative to Gazebo world
+                     is defined by the SphericalCoordinates class.
+              </description>
+       </element>
+    </element>
+</element>
