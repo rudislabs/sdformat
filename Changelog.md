@@ -1,5 +1,36 @@
 ## libsdformat 13.X
 
+### libsdformat 13.4.1 (2023-03-08)
+
+1. Fix camera_info_topic default value
+    * [Pull request #1247](https://github.com/gazebosim/sdformat/pull/1247)
+
+1. CI workflow: use checkout v3
+    * [Pull request #1245](https://github.com/gazebosim/sdformat/pull/1245)
+
+### libsdformat 13.4.0 (2023-03-03)
+
+1. Fix camera info topic default value
+    * [Pull request #1241](https://github.com/gazebosim/sdformat/pull/1241)
+
+1. Add support for merge-includes in worlds
+    * [Pull request #1233](https://github.com/gazebosim/sdformat/pull/1233)
+
+1. Backport the python3 embedSdf script variant
+    * [Pull request #1240](https://github.com/gazebosim/sdformat/pull/1240)
+
+1. Go back to SDF_ASSERT instead of FATAL_ERROR
+    * [Pull request #1235](https://github.com/gazebosim/sdformat/pull/1235)
+
+1. Add missing sdf files from xsd generation
+    * [Pull request #1231](https://github.com/gazebosim/sdformat/pull/1231)
+
+1. CI workflow: use checkout v3
+    * [Pull request #1225](https://github.com/gazebosim/sdformat/pull/1225)
+
+1. Use `File.exist?` for Ruby 3.2 compatibility
+    * [Pull request #1216](https://github.com/gazebosim/sdformat/pull/1216)
+
 ### libsdformat 13.3.0 (2023-02-07)
 
 1. Add airspeed sensor
@@ -309,6 +340,11 @@
 
 ## libsdformat 12.X
 
+### libsdformat 12.7.1 (2023-02-28)
+
+1. Fix camera info topic default value
+    * [Pull request #1241](https://github.com/gazebosim/sdformat/pull/1241)
+
 ### libsdformat 12.7.0 (2023-02-03)
 
 1. Forward port libsdformat9.10.0. This includes the ign to gz headers.
@@ -319,7 +355,7 @@
 1. Infrastructure
   1. CI workflow: use checkout v3.
       * [Pull request #1225](https://github.com/gazebosim/sdformat/pull/1225)
-  
+
   1. macos workflow: don't upgrade existing packages.
       * [Pull request #1217](https://github.com/gazebosim/sdformat/pull/1217)
 
