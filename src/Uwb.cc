@@ -52,7 +52,7 @@ Errors Uwb::Load(ElementPtr _sdf)
   if (_sdf->GetName() != "uwb")
   {
     errors.push_back({ErrorCode::ELEMENT_INCORRECT_TYPE,
-        "Attempting to load an UWB, but the provided SDF element is "
+        "Attempting to load an UWB sensor, but the provided SDF element is "
         "not an <uwb>."});
     return errors;
   }

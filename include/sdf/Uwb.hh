@@ -21,7 +21,6 @@
 
 #include <sdf/Error.hh>
 #include <sdf/Element.hh>
-#include <sdf/Noise.hh>
 #include <sdf/sdf_config.h>
 
 namespace sdf
@@ -62,7 +61,7 @@ namespace sdf
     /// \return True if 'this' != _uwb.
     public: bool operator!=(const Uwb &_uwb) const;
 
-        /// \brief This string represents special hardcoded use cases that are
+    /// \brief This string represents special hardcoded use cases that are
     /// commonly seen with drones:
     ///   - NED: The Uwb sensor XYZ aligns with NED, where NED orientation relative
     ///          to the world is defined by the SphericalCoordinates class.
